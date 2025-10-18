@@ -10,3 +10,5 @@ Articles on Python, PostgreSQL, Django, and Django REST Framework for backend de
 2. [Is Python a Statically or Dynamically Typed Language?](https://dev.to/beatrisilieva/is-python-a-statically-or-dynamically-typed-language-whats-the-difference-2b4n)
 3. [What is the Difference Between Mutable and Immutable Objects in Python? What is a Hash Table and Why Does Python Use Them?](https://dev.to/beatrisilieva/what-is-the-difference-between-mutable-and-immutable-objects-in-python-what-is-a-hash-table-and-4pmk)
 4. [Python Lists vs Tuples: Mutable vs Immutable Data Structures and When to Use Each](https://dev.to/beatrisilieva/python-lists-vs-tuples-mutable-vs-immutable-data-structures-and-when-to-use-each-3790)
+5. [List Comprehension in Python: Syntax, Examples, and When to Use Regular For Loops](https://dev.to/beatrisilieva/list-comprehension-in-python-syntax-examples-and-when-to-use-regular-for-loops-279k)
+6. [Python Functions vs Methods: Differences, Definition, and Examples](https://dev.to/beatrisilieva/python-functions-vs-methods-differences-definition-and-examples-h9l)
