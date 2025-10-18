@@ -6,54 +6,6 @@ Interview questions and answers covering Python, PostgreSQL, Django, and Django 
 
 ## Python
 
-
-
-### 5. Can you explain what list comprehension is and give an example of when it's better to use it versus a regular for loop?
-
-List comprehension is a concise syntax for creating a new list by applying an expression to each item in an iterable like a list, range, string, or any iterable object. It is faster and more Pythonic than regular for loops.
-
-I would use list comprehension for simple transformations like multiplying, filtering, or converting values, when it fits on one line and is easy to read, when I need a new list as the result, and for better performance with simple operations.
-
-I would use a regular for loop for complex logic with multiple conditions, multiple operations inside the loop, when readability would suffer, when I do not need to create a new list and am just processing data, or for deep nesting with more than two levels.
-
-```python
-# Example 1: Simple transformation - squaring numbers
-# With list comprehension (concise and fast)
-numbers = [1, 2, 3, 4, 5]
-squared = [n ** 2 for n in numbers]
-print(squared)  # Output: [1, 4, 9, 16, 25]
-
-# With regular for loop (more verbose)
-numbers = [1, 2, 3, 4, 5]
-squared = []
-for n in numbers:
-    squared.append(n ** 2)
-print(squared)  # Output: [1, 4, 9, 16, 25]
-
-
-# Example 2: With condition - filtering even numbers
-numbers = [1, 2, 3, 4, 5, 6, 7, 8]
-evens = [n for n in numbers if n % 2 == 0]
-print(evens)  # Output: [2, 4, 6, 8]
-
-
-# Example 3: When NOT to use list comprehension - complex logic
-# Bad (hard to read)
-result = [x * 2 if x % 2 == 0 else x * 3 if x % 3 == 0 else x for x in range(10)]
-
-# Good (clear and readable)
-result = []
-for x in range(10):
-    if x % 2 == 0:
-        result.append(x * 2)
-    elif x % 3 == 0:
-        result.append(x * 3)
-    else:
-        result.append(x)
-print(result)  # Output: [0, 3, 4, 9, 8, 15, 12, 21, 16, 27]
-```
-[Back to Table of Contents](#table-of-contents)
-
 ### 6. What are Python generators and why would you use them instead of regular lists?
 
 Generators are a special type of iterator in Python that generate values on-demand, or lazily, rather than storing them all in memory at once.
