@@ -7,31 +7,6 @@ Interview questions and answers covering Python, PostgreSQL, Django, and Django 
 ## Python
 
 
-### 4. Can you explain the difference between a list and a tuple in Python? When would you choose to use one over the other?
-
-Lists are mutable, meaning I can add, remove, or modify elements after creation. Tuples are immutable-once created, they cannot be changed. However, if a tuple contains mutable objects like lists, those objects themselves can still be modified.
-
-I would use a **list** when I need a collection that will be modified, like a todo list.
-
-I would use a **tuple** for data that should not change, like coordinates. Tuples are slightly faster because they are immutable and do not need reindexing when elements are added or removed. They also clearly signal to other developers that the data is meant to stay constant.
-
-```python
-# List - mutable
-tasks = ['write code', 'review PR']
-tasks.append('deploy')  # Works fine
-tasks[0] = 'refactor code'  # Can modify
-print(tasks)  # ['refactor code', 'review PR', 'deploy']
-
-# Tuple - immutable
-coordinates = (40.7128, -74.0060)  # NYC latitude, longitude
-coordinates[0] = 41.8781  # TypeError: 'tuple' object does not support item assignment
-
-# Tuple with mutable object inside
-config = ('production', ['server1', 'server2'])
-config[1].append('server3')  # This works - modifying the list inside
-print(config)  # ('production', ['server1', 'server2', 'server3'])
-```
-[Back to Table of Contents](#table-of-contents)
 
 ### 5. Can you explain what list comprehension is and give an example of when it's better to use it versus a regular for loop?
 
@@ -645,6 +620,52 @@ complete_example("hello", "custom", 1, 2, 3, name="John")
 ```
 [Back to Table of Contents](#table-of-contents)
 
+### 22. Can you explain what the unpacking operators are used for when calling a function, not just when defining one?
+
+When calling a function, `*` and `**` are used to unpack collections into individual arguments. `*` unpacks lists or tuples into positional arguments, and `**` unpacks dictionaries into keyword arguments.
+
+This is useful when I have arguments stored in a collection and want to pass them to a function. Without unpacking, the function receives the entire collection as one argument, which usually causes an error. With unpacking, the collection is spread out into individual arguments that the function expects.
+
+The `*` and `**` operators work both ways: in function definitions they pack arguments into a tuple or dictionary, and when calling functions they unpack collections into individual arguments.
+
+```python
+# Unpacking a list with *
+def add(a, b, c):
+    return a + b + c
+
+numbers = [1, 2, 3]
+result = add(*numbers)  # Same as: add(1, 2, 3)
+print(result)  # Output: 6
+
+# Unpacking a dictionary with **
+def greet(name, age, city):
+    print(f"Hi, I'm {name}, {age} years old from {city}")
+
+person = {"name": "John", "age": 25, "city": "Sofia"}
+greet(**person)  # Same as: greet(name="John", age=25, city="Sofia")
+# Output: Hi, I'm John, 25 years old from Sofia
+
+# Common use case in decorators
+def decorator(func):
+    def wrapper(*args, **kwargs):
+        print("Before")
+        result = func(*args, **kwargs)  # Must unpack here!
+        print("After")
+        return result
+    return wrapper
+
+@decorator
+def calculate(a, b):
+    return a + b
+
+calculate(5, 3)
+# Output:
+# Before
+# After
+```
+[Back to Table of Contents](#table-of-contents)
+
+
 ### 21. What is a decorator in Python? Can you give an example of when you might use one?
 
 A decorator is a function that wraps another function to add extra functionality without modifying the original function's code. It follows the DRY principle by allowing us to reuse the same functionality in multiple places.
@@ -701,50 +722,6 @@ print(calculate_product(5, 3, operation="multiply"))
 ```
 [Back to Table of Contents](#table-of-contents)
 
-### 22. Can you explain what the unpacking operators are used for when calling a function, not just when defining one?
-
-When calling a function, `*` and `**` are used to unpack collections into individual arguments. `*` unpacks lists or tuples into positional arguments, and `**` unpacks dictionaries into keyword arguments.
-
-This is useful when I have arguments stored in a collection and want to pass them to a function. Without unpacking, the function receives the entire collection as one argument, which usually causes an error. With unpacking, the collection is spread out into individual arguments that the function expects.
-
-The `*` and `**` operators work both ways: in function definitions they pack arguments into a tuple or dictionary, and when calling functions they unpack collections into individual arguments.
-
-```python
-# Unpacking a list with *
-def add(a, b, c):
-    return a + b + c
-
-numbers = [1, 2, 3]
-result = add(*numbers)  # Same as: add(1, 2, 3)
-print(result)  # Output: 6
-
-# Unpacking a dictionary with **
-def greet(name, age, city):
-    print(f"Hi, I'm {name}, {age} years old from {city}")
-
-person = {"name": "John", "age": 25, "city": "Sofia"}
-greet(**person)  # Same as: greet(name="John", age=25, city="Sofia")
-# Output: Hi, I'm John, 25 years old from Sofia
-
-# Common use case in decorators
-def decorator(func):
-    def wrapper(*args, **kwargs):
-        print("Before")
-        result = func(*args, **kwargs)  # Must unpack here!
-        print("After")
-        return result
-    return wrapper
-
-@decorator
-def calculate(a, b):
-    return a + b
-
-calculate(5, 3)
-# Output:
-# Before
-# After
-```
-[Back to Table of Contents](#table-of-contents)
 
 ### 23. What is the difference between `__str__()` and `__repr__()` methods in Python classes?
 
